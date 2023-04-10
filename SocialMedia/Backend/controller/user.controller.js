@@ -1,9 +1,8 @@
-const {MediaModal} = require("../model/user.model")
+const { MediaModal } = require("../model/user.model")
 
 //Retrieve a user by id.
 const media =async(req,res)=>{
-    
- try {
+    try {
     const user = await MediaModal.find(req.params.id);
     console.log(user);
     if(!user){

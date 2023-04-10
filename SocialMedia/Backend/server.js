@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const userRoute= require("./routes/user.routes");
+const postRoute = require("./routes/post.routes");
 const analyticsRoutes = require("./routes/anylatics.routes");
 const { attachment } = require("./config/db");
 require("dotenv").config();
@@ -16,7 +17,13 @@ app.get("/",(req,res)=>{
 app.use("/users", userRoute);
 app.use("/users/:id", userRoute);
 app.use("/analytics/users",analyticsRoutes);
-app.use("/analytics/users/top-active",analyticsRoutes)
+app.use("/analytics/users/top-active",analyticsRoutes);
+app.use("/users", postRoute);
+app.use("/users/:id",postRoute);
+app.use("//posts/:id/like",postRoute)
+app.use("/posts/:id/unlike",postRoute);
+app.use("/analytics/posts",postRoute);
+app.use("/analytics/posts/top-liked", postRoute)
 app.listen(port_no, async()=>{
     try {
         await attachment;
